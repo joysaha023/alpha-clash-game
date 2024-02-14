@@ -9,8 +9,16 @@
 // }
 
 function continuewGame(){
+    // generat a rendom alphabet
    const alphabet =  getARandomAlphabet();
-    console.log('your random alphabets:', alphabet)
+    console.log('your random alphabets:', alphabet);
+
+    //set a randomly alphabet to the screen
+    const currentAlphabetElement = document.getElementById('current-alphabet');
+    currentAlphabetElement.innerText = alphabet;
+
+    //set Background color
+    addBackgroundColorById(alphabet);
 }
 
 function play() {
