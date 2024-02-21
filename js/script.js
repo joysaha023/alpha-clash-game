@@ -8,7 +8,11 @@
 //     playground.classList.remove('hidden')
 // }
 
+const audio = new Audio();
+let isGamePlayOn = false;
+
 function handleKeyboardUpEvent(event){
+    if(isGamePlayOn == false) return;
     const playerPressed = event.key;
     // console.log('player pressed',playerPressed);
 
@@ -26,6 +30,9 @@ function handleKeyboardUpEvent(event){
     if(playerPressed === expectedAlphabet){
         console.log('You get a point');
         
+        audio.src= "../audio/success.mp3";
+        audio.play();
+
         const currenScore = getTextElementvalueById('current-score');
         const updatedScore = currenScore + 1;
         setTextElementValueById('current-score', updatedScore);
@@ -43,7 +50,15 @@ function handleKeyboardUpEvent(event){
         console.log('You missed. you lost a life');
         const currentLife = getTextElementvalueById('current-life');
         const updateLife = currentLife - 1;
+
+        const updateLifeParcentage = (updateLife / 5) * 100;
+        art
+
+
         setTextElementValueById('current-life', updateLife);
+
+        audio.src= "../audio/wrong.mp3";
+        audio.play();
 
         if(updateLife === 0){
             gameOver();
@@ -80,6 +95,8 @@ function play() {
     setTextElementValueById('current-life', 5);
     setTextElementValueById('current-score', 0);
 
+    isGamePlayOn = true;
+
     continuewGame();
 }
 
@@ -93,4 +110,6 @@ function gameOver(){
     const currentAlpha = getElementTextById('current-alphabet');
     // console.log(currentAlpha)
     removeBackgroundColorById(currentAlpha);
+
+    isGamePlayOn = false;
 }
