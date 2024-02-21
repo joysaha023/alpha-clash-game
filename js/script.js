@@ -10,6 +10,7 @@
 
 const audio = new Audio();
 let isGamePlayOn = false;
+const artBoard = document.getElementById('art-board');
 
 function handleKeyboardUpEvent(event){
     if(isGamePlayOn == false) return;
@@ -52,7 +53,7 @@ function handleKeyboardUpEvent(event){
         const updateLife = currentLife - 1;
 
         const updateLifeParcentage = (updateLife / 5) * 100;
-        art
+        artBoard.style.background = `linear-gradient(#FFFFFFFB3,red)`;
 
 
         setTextElementValueById('current-life', updateLife);
